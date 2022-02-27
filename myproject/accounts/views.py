@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import SignUpForm
 from django.contrib.auth import login as auth_login
 # Create your views here.
+
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)

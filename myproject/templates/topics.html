@@ -11,6 +11,10 @@
 
 {% block content %}
     <!-- just leaving it empty for now. we will add core here soon. -->
+    <div class="mb-4">
+      <a href="{% url 'new_topic' board.pk %}" class="btn btn-primary">New topic</a>
+    </div>
+    
     <table class="table">
       <thead class="thead-inverse">
         <tr>
