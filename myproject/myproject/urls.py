@@ -16,48 +16,38 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import re_path
+from django.urls import re_path,path,include
 
 from accounts import views as accounts_views
 from django.contrib.auth import views as auth_views
 
 from boards import views
 
+from dj_store import views as storeviews
+
+#path这一行是一个python元组：第一个参数是模式匹配字符串，第二个参数是调用的试图函数，第三个参数是
+#python将视图函数作为一个对象传递，而不是调用，这使得函数可以项变量一样传递
+
 urlpatterns = [
+    #这一部分是账户登录的url
     re_path(r'^$', views.BoardListView.as_view(), name='home'),
-    re_path(r'^signup/$', accounts_views.signup, name='signup'),
-    re_path(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
-    re_path(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
-    re_path(r'^boards/(?P<pk>\d+)/$', views.board_topics, name='board_topics'),
-    re_path(r'^boards/(?P<pk>\d+)/new/$', views.new_topic, name='new_topic'),
-    re_path(r'admin/', admin.site.urls),
     
-    re_path(r'^reset/$',
-        auth_views.PasswordResetView.as_view(
-            template_name='password_reset.html',
-            email_template_name='password_reset_email.html',
-            subject_template_name='password_reset_subject.txt'
-            ),
-            name='password_reset'),
-    re_path(r'^reset/done/$',
-        auth_views.PasswordResetDoneView.as_view(template_name='password_reset_done.html'),
-        name='password_reset_done'),
-    re_path(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
-        auth_views.PasswordResetConfirmView.as_view(template_name='password_reset_confirm.html'),
-        name='password_reset_confirm'),
-    re_path(r'^reset/complete/$',
-        auth_views.PasswordResetCompleteView.as_view(template_name='password_reset_complete.html'),
-        name='password_reset_complete'),
+    re_path(r'^accounts/',include('accounts.urls')),
     
-    re_path(r'^settings/password/$', auth_views.PasswordChangeView.as_view(template_name='password_change.html'),
-        name='password_change'),
-    re_path(r'^settings/password/done/$', auth_views.PasswordChangeDoneView.as_view(template_name='password_change_done.html'),
-        name='password_change_done'),
+    #这一部分是帖子相关的url
+    re_path(r'^boards/',include('boards.urls')),
     
-    re_path(r'^boards/(?P<pk>\d+)/topics/(?P<topic_pk>\d+)/$', views.topic_posts, name='topic_posts'),
     
-    re_path(r'^boards/(?P<pk>\d+)/topics/(?P<topic_pk>\d+)/reply/$', views.reply_topic, name='reply_topic'),
+    #这一部分是商城相关的url
+    re_path(r'^store_homepage/$', storeviews.storehome.store_homepage,name="store_homepage"),
     
-    re_path(r'^boards/(?P<pk>\d+)/topics/(?P<topic_pk>\d+)/posts/(?P<post_pk>\d+)/edit/$',
-        views.PostUpdateView.as_view(), name='edit_post'),
+    #这是时间板块的url
+    re_path(r'^current_datetime/$', views.current_datetime,name="current_datetime"),
 ]
+
+
+
+'''
+松耦合,决定URL返回哪个视图函数和实现这个视图函数是在两个不同的地方,这使得修改一个地方不影响其他地方
+
+'''

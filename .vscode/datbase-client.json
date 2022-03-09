@@ -1,0 +1,44 @@
+{
+    "database.connections": {
+        "1646390418296": {
+            "key": "1646390418296",
+            "host": "127.0.0.1",
+            "port": "3306",
+            "user": "root",
+            "password": "qwer1234",
+            "timezone": "+00:00",
+            "useSSL": false,
+            "isCluster": false,
+            "clientCertPath": null,
+            "clientKeyPath": null,
+            "ssh": {
+                "host": "",
+                "privateKeyPath": "C:\\Users\\nevermore\\.ssh\\id_rsa",
+                "port": 22,
+                "username": "root",
+                "type": "privateKey",
+                "connectTimeout": 10000,
+                "algorithms": {
+                    "cipher": []
+                }
+            },
+            "usingSSH": false,
+            "esAuth": "none",
+            "encoding": "utf8",
+            "showHidden": false,
+            "connectionKey": "database.connections",
+            "hideSystemSchema": true,
+            "global": false,
+            "dbType": "MySQL",
+            "connectionUrl": "",
+            "encrypt": true,
+            "dbPath": "",
+            "authType": "default",
+            "disable": false,
+            "includeDatabases": null,
+            "database": null,
+            "name": "mysql_project",
+            "tooltip": "Host: 127.0.0.1, Port: 3306"
+        }
+    }
+}

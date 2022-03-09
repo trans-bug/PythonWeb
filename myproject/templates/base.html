@@ -3,7 +3,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>{% block title %}Django Boards{% endblock %}</title>
+    <title>{% block title %}tran-bug{% endblock %}</title>
     <link href="https://fonts.font.im/css?family=Oswald" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/app.css' %}">
@@ -14,7 +14,10 @@
     {% block body %}  <!-- 这里 -->
       <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container">
-          <a class="navbar-brand" href="{% url 'home' %}">Django Boards</a>
+          <a class="navbar-brand" href="{% url 'current_datetime' %}">时间</a>
+          <a class="navbar-brand" href="{% url 'home' %}">博客</a>
+          <a class="navbar-brand" href="{% url 'home' %}">论坛</a>
+          <a class="navbar-brand" href="{% url 'home' %}">商城</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -29,7 +32,7 @@
                     <a class="dropdown-item" href="#">My account</a>
                     <a class="dropdown-item" href="#">Change password</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
+                    <a class="dropdown-item" href="{% url 'home' %}">Log out</a>
                   </div>
                 </li>
               </ul>

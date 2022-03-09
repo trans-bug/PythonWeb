@@ -9,12 +9,15 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+from encodings import utf_8
 import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
+DEFAULT_CHARSET = 'utf_8'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -41,6 +44,7 @@ INSTALLED_APPS = [
     'boards',
     'widget_tweaks',
     'accounts',
+    'dj_store',
 ]
 
 MIDDLEWARE = [
@@ -55,6 +59,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'myproject.urls'
+#作为URLconf告诉Django在这个站点中那些Python的模块将被用到，在项目创立时自动添加，作为根URLconf，可以在此url中包含其他url
+
 
 TEMPLATES = [
     {
@@ -82,8 +88,12 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mysitedb',
+    'USER':'root',
+    'PASSWORD':'qwer1234',
+    'HOST':'127.0.0.1',
+    'PORT':'3306',
     }
 }
 

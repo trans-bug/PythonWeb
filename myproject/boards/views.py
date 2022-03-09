@@ -1,5 +1,8 @@
+from urllib import response
 from django.shortcuts import get_object_or_404, render,redirect
 
+
+#render需要的参数
 # Create your views here.
 from django.http import HttpResponse,Http404
 from django.contrib.auth.models import User
@@ -16,7 +19,7 @@ from django.utils.decorators import method_decorator
 
 from django.views.generic import ListView
 
-
+import datetime#从python标准库中导入时间
 
 class BoardListView(ListView):
     model = Board
@@ -92,3 +95,15 @@ class PostUpdateView(UpdateView):
         post.updated_at = timezone.now()
         post.save()
         return redirect('topic_posts', pk=post.topic.board.pk, topic_pk=post.topic.pk)
+    
+def current_datetime(request):
+    now = datetime.datetime.now()
+    return render(request,'current_datetime.html',{'现在的时间是':now})
+
+
+
+'''
+request 是一个 HttpRequest 对象,每一个视图总是_ 以一个 HttpRequest 对象作为 它的第一个参数。
+第二个参数是从匹配的url中提取出来的，捕获值永远是字符串，捕获值只与位置相关
+
+'''

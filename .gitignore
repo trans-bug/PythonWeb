@@ -1,0 +1,7 @@
+# created by virtualenv automatically
+__pycache__/
+*.py[cod]
+.env
+venv/
+SQLite database files
+*.sqlite3
