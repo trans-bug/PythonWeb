@@ -13,6 +13,22 @@ from encodings import utf_8
 import os
 from pathlib import Path
 
+
+#设置.env的文件使用包的配置，保护文件
+from decouple import config,Csv
+import dj_database_url
+SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG', default=False, cast=bool)
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+DATABASES = {
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
+}
+
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
