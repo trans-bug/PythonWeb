@@ -15,10 +15,13 @@ from pathlib import Path
 
 
 #设置.env的文件使用包的配置，保护文件
+'''
 from decouple import config,Csv
+
 import dj_database_url
 SECRET_KEY = config('SECRET_KEY')
-SECRET_KEY = config('SECRET_KEY')
+
+
 DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 DATABASES = {
@@ -26,6 +29,7 @@ DATABASES = {
         default=config('DATABASE_URL')
     )
 }
+'''
 
 
 
@@ -56,6 +60,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     
     'boards',
     'widget_tweaks',

@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load humanize%}
+
 {% block title %}
   {{ board.name }} - {{ block.super }}
 {% endblock %}
@@ -10,7 +12,7 @@
 {% endblock %}
 
 {% block content %}
-    <!-- just leaving it empty for now. we will add core here soon. -->
+    <!--实现一个创建新主题 -->
     <div class="mb-4">
       <a href="{% url 'new_topic' board.pk %}" class="btn btn-primary">New topic</a>
     </div>
@@ -32,9 +34,12 @@
             <td>{{ topic.starter.username }}</td>
             <td>{{ topic.replies }}</td>
             <td>{{ topic.views }}</td>
-            <td>{{ topic.last_updated }}</td>
+            <td>{{ topic.last_updated|naturaltime }}</td>
           </tr>
         {% endfor %}
       </tbody>
     </table>
+<!--实现一个分页块-->
+    {% include 'includes/pagination.html' %}  
 {% endblock %}
+

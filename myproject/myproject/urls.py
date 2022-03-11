@@ -23,16 +23,24 @@ from django.contrib.auth import views as auth_views
 
 from boards import views
 
+from accounts.views import UserUpdateView
+
 from dj_store import views as storeviews
 
 #path这一行是一个python元组：第一个参数是模式匹配字符串，第二个参数是调用的试图函数，第三个参数是
 #python将视图函数作为一个对象传递，而不是调用，这使得函数可以项变量一样传递
 
 urlpatterns = [
-    #这一部分是账户登录的url
+    
     re_path(r'^$', views.BoardListView.as_view(), name='home'),
     
+    #这一部分是管理员的url
+    re_path(r'^admin/', admin.site.urls),
+    
+    #这一部分是账户登录的url
     re_path(r'^accounts/',include('accounts.urls')),
+    
+    re_path(r'^settings/account/$', accounts_views.UserUpdateView.as_view(), name='my_account'),
     
     #这一部分是帖子相关的url
     re_path(r'^boards/',include('boards.urls')),

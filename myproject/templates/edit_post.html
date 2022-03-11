@@ -1,7 +1,20 @@
 
 {% extends 'base.html' %}
 
+{% load static%}
+
 {% block title %}Edit post{% endblock %}
+
+{% block stylesheet %}
+  <link rel="stylesheet" href="{% static 'css/simplemde.min.css' %}">
+{% endblock %}
+
+{% block javascript %}
+  <script src="{% static 'js/simplemde.min.js' %}"></script>
+  <script>
+    var simplemde = new SimpleMDE();
+  </script>
+{% endblock %}
 
 {% block breadcrumb %}
   <li class="breadcrumb-item"><a href="{% url 'home' %}">Boards</a></li>
@@ -9,6 +22,7 @@
   <li class="breadcrumb-item"><a href="{% url 'topic_posts' post.topic.board.pk post.topic.pk %}">{{ post.topic.subject }}</a></li>
   <li class="breadcrumb-item active">Edit post</li>
 {% endblock %}
+
 
 {% block content %}
   <form method="post" class="mb-4" novalidate>

@@ -12,10 +12,6 @@ urlpatterns = [
     
     re_path(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
    
-    #这一部分是管理员的url
-    re_path(r'admin/', admin.site.urls),
-    
-    
     #这一部分是密码相关的url
     re_path(r'^reset/$',
         auth_views.PasswordResetView.as_view(
