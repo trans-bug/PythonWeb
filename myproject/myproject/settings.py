@@ -15,15 +15,19 @@ from pathlib import Path
 
 
 #设置.env的文件使用包的配置，保护文件
-'''
+
 from decouple import config,Csv
 
 import dj_database_url
+
 SECRET_KEY = config('SECRET_KEY')
 
 
 DEBUG = config('DEBUG', default=False, cast=bool)
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+
+ALLOWED_HOSTS = config('ALLOWED_HOSTS',default=False, cast=Csv())
+
+'''
 DATABASES = {
     'default': dj_database_url.config(
         default=config('DATABASE_URL')
@@ -46,9 +50,9 @@ DEFAULT_CHARSET = 'utf_8'
 SECRET_KEY = 'django-insecure-82fzm&28i2w-2a*mk$8a+x#f%tq$=eogf3ld5&!ou14p!1+m(b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []
 
 
 # Application definition
